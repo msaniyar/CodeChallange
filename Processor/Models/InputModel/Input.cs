@@ -13,9 +13,9 @@ namespace Processor.Models.InputModel
         [XmlElement(ElementName = "Date")]
         public string Date { get; set; }
         [XmlElement(ElementName = "Energy")]
-        public string Energy { get; set; }
+        public double Energy { get; set; }
         [XmlElement(ElementName = "Price")]
-        public string Price { get; set; }
+        public double Price { get; set; }
     }
 
     [XmlRoot(ElementName = "Generation")]
@@ -51,14 +51,14 @@ namespace Processor.Models.InputModel
         [XmlElement(ElementName = "Generation")]
         public Generation Generation { get; set; }
         [XmlElement(ElementName = "EmissionsRating")]
-        public string EmissionsRating { get; set; }
+        public double EmissionsRating { get; set; }
     }
 
     [XmlRoot(ElementName = "Gas")]
     public class Gas
     {
         [XmlElement(ElementName = "GasGenerator")]
-        public GasGenerator GasGenerator { get; set; }
+        public List<GasGenerator> GasGenerator { get; set; }
     }
 
     [XmlRoot(ElementName = "CoalGenerator")]
@@ -69,18 +69,18 @@ namespace Processor.Models.InputModel
         [XmlElement(ElementName = "Generation")]
         public Generation Generation { get; set; }
         [XmlElement(ElementName = "TotalHeatInput")]
-        public string TotalHeatInput { get; set; }
+        public double TotalHeatInput { get; set; }
         [XmlElement(ElementName = "ActualNetGeneration")]
-        public string ActualNetGeneration { get; set; }
+        public double ActualNetGeneration { get; set; }
         [XmlElement(ElementName = "EmissionsRating")]
-        public string EmissionsRating { get; set; }
+        public double EmissionsRating { get; set; }
     }
 
     [XmlRoot(ElementName = "Coal")]
     public class Coal
     {
         [XmlElement(ElementName = "CoalGenerator")]
-        public CoalGenerator CoalGenerator { get; set; }
+        public List<CoalGenerator> CoalGenerator { get; set; }
     }
 
     [XmlRoot(ElementName = "GenerationReport")]

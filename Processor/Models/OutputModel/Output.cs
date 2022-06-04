@@ -13,7 +13,7 @@ namespace Processor.Models.OutputModel
         [XmlElement(ElementName = "Name")]
         public string Name { get; set; }
         [XmlElement(ElementName = "Total")]
-        public string Total { get; set; }
+        public double Total { get; set; }
     }
 
     [XmlRoot(ElementName = "Totals")]
@@ -31,7 +31,7 @@ namespace Processor.Models.OutputModel
         [XmlElement(ElementName = "Date")]
         public string Date { get; set; }
         [XmlElement(ElementName = "Emission")]
-        public string Emission { get; set; }
+        public double Emission { get; set; }
     }
 
     [XmlRoot(ElementName = "MaxEmissionGenerators")]
@@ -47,14 +47,14 @@ namespace Processor.Models.OutputModel
         [XmlElement(ElementName = "Name")]
         public string Name { get; set; }
         [XmlElement(ElementName = "HeatRate")]
-        public string HeatRate { get; set; }
+        public double HeatRate { get; set; }
     }
 
     [XmlRoot(ElementName = "ActualHeatRates")]
     public class ActualHeatRates
     {
         [XmlElement(ElementName = "ActualHeatRate")]
-        public ActualHeatRate ActualHeatRate { get; set; }
+        public List<ActualHeatRate> ActualHeatRate { get; set; }
     }
 
     [XmlRoot(ElementName = "GenerationOutput")]

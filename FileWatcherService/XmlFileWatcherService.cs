@@ -28,7 +28,7 @@ namespace CodeChallange
         private readonly string _outputPath;
         private readonly string _referenceFile;
         private readonly IMediator _mediator;
-        private static ReferenceData ReferenceData;
+        private static ReferenceData _referenceData;
 
         public XmlFileWatcherService(ILogger<XmlFileWatcherService> logger,
                                      IConfiguration config,
@@ -57,7 +57,6 @@ namespace CodeChallange
         {
             while (!cancellationToken.IsCancellationRequested)
             {
-                _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
                 await Task.Delay(1000, cancellationToken);
             }
         }
@@ -66,6 +65,7 @@ namespace CodeChallange
         {
 
             CheckAndCreatePaths(_watcherPath, _outputPath);
+            LoadReferenceData();
 
             _watcher = new FileSystemWatcher
             {
@@ -81,10 +81,6 @@ namespace CodeChallange
 
             _watcher.Created += new FileSystemEventHandler(OnCreated);
 
-            var reader = new XmlSerializer(typeof(ReferenceData));
-            var file = new StreamReader(_referenceFile);
-            ReferenceData = (ReferenceData)reader.Deserialize(file);
-            file.Close();
             return base.StartAsync(cancellationToken);
         }
 
@@ -122,26 +118,33 @@ namespace CodeChallange
 
             var document = new InputXml
             {
-                Reference = ReferenceData,
+                Reference = _referenceData,
                 InputDocument = doc,
                 DocumentName = args.Name,
                 OutputLocation = _outputPath
             };
 
-            var result = _mediator.Send(document);
-
-            Console.WriteLine(args.Name + " is " + args.FullPath);
-            Console.WriteLine(result);
+            var result = _mediator.Send(document).GetAwaiter().GetResult();
+            _logger.LogInformation(result.Message);
         }
 
 
         private static void CheckAndCreatePaths(params string[] path)
         {
-            foreach (string pathItem in path)
-            if (!Directory.Exists(pathItem))
+            foreach (var pathItem in path)
             {
+                if (Directory.Exists(pathItem)) continue;
                 Directory.CreateDirectory(pathItem);
             }
+
+        }
+
+        private void LoadReferenceData()
+        {
+            var reader = new XmlSerializer(typeof(ReferenceData));
+            var file = new StreamReader(_referenceFile);
+            _referenceData = (ReferenceData)reader.Deserialize(file);
+            file.Close();
         }
 
     }

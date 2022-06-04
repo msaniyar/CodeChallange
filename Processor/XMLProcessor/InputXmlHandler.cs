@@ -17,17 +17,29 @@ namespace Processor.XMLProcessor
         private GenerationReport _generationReport;
 
 
-        Task<OutputResult> IRequestHandler<InputXml, OutputResult>.Handle(InputXml request, CancellationToken cancellationToken)
+        Task<OutputResult> IRequestHandler<InputXml, OutputResult>.Handle(InputXml input, CancellationToken cancellationToken)
         {
 
-            var serializer = new XmlSerializer(typeof(GenerationReport));
-            
-            using (XmlReader reader = new XmlNodeReader(request.InputDocument))
+            try
             {
-                _generationReport = (GenerationReport)serializer.Deserialize(reader);
-            }
+                var serializer = new XmlSerializer(typeof(GenerationReport));
 
-            return Task<OutputResult>.FromResult(new OutputResult());
+                using (XmlReader reader = new XmlNodeReader(input.InputDocument))
+                {
+                    _generationReport = (GenerationReport)serializer.Deserialize(reader);
+                }
+
+                var fileCreator = new FileCreator(input, _generationReport);
+                return Task.FromResult(fileCreator.CreateOutputFile());
+            }
+            catch (Exception exp)
+            {
+                return Task.FromResult(new OutputResult
+                {
+                    Message = $"File cannot be created. Error Message: {exp.Message}",
+                    Success = false
+                });
+            }
 
         }
     }
