@@ -11,6 +11,9 @@ namespace Processor.Calculators
     {
         private readonly ReferenceData _referenceData;
 
+        protected const string Format = "F9";
+
+
         protected BaseCalculator(ReferenceData referenceData)
         {
             _referenceData = referenceData;
@@ -34,7 +37,7 @@ namespace Processor.Calculators
 
             day.AddRange(from generatorDay in generation.Day
                          let emission = generatorDay.Energy * emissionRating * GetEmissionFactor(type)
-                         select new Day { Name = name, Date = generatorDay.Date, Emission = emission });
+                         select new Day { Name = name, Date = generatorDay.Date, Emission = emission.ToString(Format) });
 
             return day;
 

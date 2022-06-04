@@ -15,6 +15,11 @@ namespace Processor.Calculators
         {
         }
 
+        /// <summary>
+        /// Calculate output for incoming report
+        /// </summary>
+        /// <param name="report"></param>
+        /// <returns></returns>
         public GenerationOutput CalculateOutput(GenerationReport report)
         {
             double dailyGenerationValue = 0;
@@ -45,31 +50,7 @@ namespace Processor.Calculators
                 totals.Generator.Add(new Generator
                 {
                     Name = windGenerator.Name,
-                    Total = dailyGenerationValue
-                });
-
-            }
-
-
-            foreach (var coalGenerator in report.Coal.CoalGenerator)
-            {
-                dailyGenerationValue = CalculateDailyGeneration(coalGenerator.Generation, GeneratorTypes.Coal);
-                var coalEmissionDays = CalculateMaxEmissionDays(coalGenerator.Generation, GeneratorTypes.Coal,
-                    coalGenerator.EmissionsRating, coalGenerator.Name);
-                var actualHeatRate = CalculateActualHeatRate(coalGenerator.TotalHeatInput, coalGenerator.ActualNetGeneration);
-
-                totals.Generator.Add(new Generator
-                {
-                    Name = coalGenerator.Name,
-                    Total = dailyGenerationValue
-                });
-
-                days.AddRange(coalEmissionDays);
-
-                actualHeatRates.ActualHeatRate.Add(new ActualHeatRate()
-                {
-                    Name = coalGenerator.Name,
-                    HeatRate = actualHeatRate
+                    Total = dailyGenerationValue.ToString(Format)
                 });
 
             }
@@ -87,13 +68,36 @@ namespace Processor.Calculators
                 totals.Generator.Add(new Generator
                 {
                     Name = gasGenerator.Name,
-                    Total = dailyGenerationValue
+                    Total = dailyGenerationValue.ToString(Format)
+                });
+
+            }
+
+            foreach (var coalGenerator in report.Coal.CoalGenerator)
+            {
+                dailyGenerationValue = CalculateDailyGeneration(coalGenerator.Generation, GeneratorTypes.Coal);
+                var coalEmissionDays = CalculateMaxEmissionDays(coalGenerator.Generation, GeneratorTypes.Coal,
+                    coalGenerator.EmissionsRating, coalGenerator.Name);
+                var actualHeatRate = CalculateActualHeatRate(coalGenerator.TotalHeatInput, coalGenerator.ActualNetGeneration);
+
+                totals.Generator.Add(new Generator
+                {
+                    Name = coalGenerator.Name,
+                    Total = dailyGenerationValue.ToString(Format)
+                });
+
+                days.AddRange(coalEmissionDays);
+
+                actualHeatRates.ActualHeatRate.Add(new ActualHeatRate()
+                {
+                    Name = coalGenerator.Name,
+                    HeatRate = actualHeatRate.ToString("0.#########")
                 });
 
             }
 
             var maxEmissionDays = days.GroupBy(d => d.Date)
-                .SelectMany(x => x.Where(y => Math.Abs(y.Emission - x.Max(z => z.Emission)) < 0.0000000001)).ToList();
+                .SelectMany(x => x.Where(y => Math.Abs(Convert.ToDouble(y.Emission) - x.Max(z => Convert.ToDouble(z.Emission))) < 0.0000000001)).ToList();
 
             maxEmissionGenerators.Day.AddRange(maxEmissionDays);
 

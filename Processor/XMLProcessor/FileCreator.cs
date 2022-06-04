@@ -22,6 +22,10 @@ namespace Processor.XMLProcessor
             _generationReport = generationReport;
         }
 
+        /// <summary>
+        /// Create desired output xml file
+        /// </summary>
+        /// <returns></returns>
         public OutputResult CreateOutputFile()
         {
             var outputResult = new OutputResult();
