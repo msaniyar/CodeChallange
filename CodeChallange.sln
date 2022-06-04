@@ -12,6 +12,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		ReferenceDirectory\ReferenceData.xml = ReferenceDirectory\ReferenceData.xml
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{56C02FB2-279C-4F84-96E1-2A2C1E8F232B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{6A84A722-8C7E-45D4-8B3E-A70C0BC97F82}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,9 +30,16 @@ Global
 		{2ABD1B4B-6EEE-40BF-8890-6098ABA4D7A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2ABD1B4B-6EEE-40BF-8890-6098ABA4D7A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2ABD1B4B-6EEE-40BF-8890-6098ABA4D7A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56C02FB2-279C-4F84-96E1-2A2C1E8F232B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56C02FB2-279C-4F84-96E1-2A2C1E8F232B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56C02FB2-279C-4F84-96E1-2A2C1E8F232B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56C02FB2-279C-4F84-96E1-2A2C1E8F232B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{56C02FB2-279C-4F84-96E1-2A2C1E8F232B} = {6A84A722-8C7E-45D4-8B3E-A70C0BC97F82}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8778B5B3-ABED-4530-A92B-28347B76AA23}

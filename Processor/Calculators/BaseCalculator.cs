@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Processor.Models;
 using Processor.Models.InputModel;
+using Processor.Models.OutputModel;
 using Day = Processor.Models.OutputModel.Day;
 
 namespace Processor.Calculators
