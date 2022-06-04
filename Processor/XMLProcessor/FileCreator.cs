@@ -24,19 +24,13 @@ namespace Processor.XMLProcessor
 
         public OutputResult CreateOutputFile()
         {
-            var output = new GenerationOutput();
             var outputResult = new OutputResult();
-            var dailyGenerationValueCalculator = new DailyGenerationValueCalculator();
-            var maxEmissionGenerators = new DailyMaxEmissionsCalculator();
-            var actualHeatRates = new ActualHeatRateCalculator();
+
             try
             {
+                var calculator = new GeneratorCalculator(_input.Reference);
+                var output = calculator.CalculateOutput(_generationReport);
 
-                output.Totals = dailyGenerationValueCalculator.CalculateTotalValue(_generationReport, _input.Reference);
-                output.MaxEmissionGenerators =
-                    maxEmissionGenerators.CalculateMaxEmissionGenerators(_generationReport, _input.Reference);
-                output.ActualHeatRates =
-                    actualHeatRates.CalculateActualHeatRates(_generationReport);
                 var writer = new XmlSerializer(typeof(GenerationOutput));
                 var path = Path.Combine(_input.OutputLocation, $"{Path.GetFileNameWithoutExtension(_input.DocumentName)}-result.xml");
                 var file = File.Create(path);
