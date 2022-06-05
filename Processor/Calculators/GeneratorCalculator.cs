@@ -15,12 +15,8 @@ namespace Processor.Calculators
         {
         }
 
-        /// <summary>
-        /// Calculate output for incoming report
-        /// </summary>
-        /// <param name="report"></param>
-        /// <returns></returns>
-        public GenerationOutput CalculateOutput(GenerationReport report)
+        /// <inheritdoc />
+        public override GenerationOutput CalculateOutput(GenerationReport report)
         {
             double dailyGenerationValue = 0;
             var totals = new Totals

@@ -8,7 +8,7 @@ using Day = Processor.Models.OutputModel.Day;
 
 namespace Processor.Calculators
 {
-    public class BaseCalculator
+    public abstract class BaseCalculator
     {
         private readonly ReferenceData _referenceData;
 
@@ -19,6 +19,13 @@ namespace Processor.Calculators
         {
             _referenceData = referenceData;
         }
+
+        /// <summary>
+        /// Calculate output for incoming report
+        /// </summary>
+        /// <param name="report"></param>
+        /// <returns></returns>
+        public abstract GenerationOutput CalculateOutput(GenerationReport report);
 
         protected double CalculateDailyGeneration(Generation generation, GeneratorTypes type)
         {

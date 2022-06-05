@@ -14,6 +14,11 @@ namespace UnitTests.CalculatorTests
         {
         }
 
+        public override GenerationOutput CalculateOutput(GenerationReport report)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public new double CalculateDailyGeneration(Generation generation, GeneratorTypes type)
         {
             return base.CalculateDailyGeneration(generation, type);
