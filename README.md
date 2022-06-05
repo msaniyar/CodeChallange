@@ -22,7 +22,7 @@ Solution can be run directly from Visual Studio (via F5 or Ctrl+F5) after pullin
 
 Before running FileWatcherService should be selected as Startup Project.
 
-Alternativly project can be run via dotnet commands.
+Alternatively project can be run via dotnet commands.
 Go To Solution Folder 
 
 #### dotnet build
