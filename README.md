@@ -15,6 +15,8 @@ Output file location under Output:Location
 
 Reference File name and directory are also referred in the appsettings.json file.
 
+Input and Output directories are created by FileWatcherService if they are not exist.
+
 ## Solution Run
 Solution can be run directly from Visual Studio (via F5 or Ctrl+F5) after pulling the code and building it. Configuration as mentioned above should be changed before running. 
 

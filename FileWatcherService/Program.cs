@@ -1,13 +1,9 @@
+using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Processor.Base;
-using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace CodeChallange
+namespace FileWatcherService
 {
     public class Program
     {

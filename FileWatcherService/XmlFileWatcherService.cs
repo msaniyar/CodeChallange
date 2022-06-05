@@ -1,21 +1,17 @@
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
-using System.IO;
-using Microsoft.Extensions.DependencyInjection;
-using MediatR;
-using Processor.XMLProcessor;
-using Processor.Base;
-using System.Xml.Serialization;
-using Processor.Models;
 using System.Xml;
+using System.Xml.Serialization;
+using MediatR;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using Processor.Models;
+using Processor.XMLProcessor;
 
-namespace CodeChallange
+namespace FileWatcherService
 {
     public class XmlFileWatcherService : BackgroundService
     {
