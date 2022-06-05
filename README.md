@@ -3,7 +3,7 @@ This solution reads any new .xml file from configured input location, calculates
 
 Solution consists two .net5 projects. 
 ## FileWatcherService: 
-It is a console application and responsible for listening input location and fire event in case of new .xml file is copied. After event fired backend service is called via package called MediatR.
+It is an executable console application and responsible for listening input location and fire event in case of new .xml file is copied. After event fired backend service is called via package called MediatR.
 ## Processor
 It is a class library which is responsible for calculating generator values and creating output file to given directory.
 
@@ -18,7 +18,8 @@ Reference File name and directory are also referred in the appsettings.json file
 Input and Output directories are created by FileWatcherService if they are not exist.
 
 ## Solution Run
-Solution can be run directly from Visual Studio (via F5 or Ctrl+F5) after pulling the code and building it. Configuration as mentioned above should be changed before running. 
+Solution can be run directly from Visual Studio (via F5 or Ctrl+F5) after pulling the code and building it. Configuration as mentioned above should be changed before running.
+Before running FileWatcherService should be selected as Startup Project.
 
 Alternativly project can be run via dotnet commands.
 Go To Solution Folder 
