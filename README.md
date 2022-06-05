@@ -19,6 +19,7 @@ Input and Output directories are created by FileWatcherService if they are not e
 
 ## Solution Run
 Solution can be run directly from Visual Studio (via F5 or Ctrl+F5) after pulling the code and building it. Configuration as mentioned above should be changed before running.
+
 Before running FileWatcherService should be selected as Startup Project.
 
 Alternativly project can be run via dotnet commands.
